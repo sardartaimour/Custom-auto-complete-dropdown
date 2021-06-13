@@ -1,0 +1,31 @@
+
+
+<div class="input-container" style="width: 100%;">
+    <div class="input" #panelTemRef>
+
+        <i class="fa fa-search search-icon" aria-hidden="true"></i>
+        <input #searchInput class="form-control input-control"
+            [placeholder]="placeholder"
+            [disabled]="disabled"
+            [required]="required"
+            [value]="displayValue"
+            autocomplete="off"
+            (click)="onOpenPanel()"
+            (blur)="onTouched()">
+        
+        <i class="fa fa-caret-down dropdown-icon" 
+            [ngStyle]="{'right': searchInput.invalid ? '32px' : '13px'}" aria-hidden="true"></i>
+
+        <ng-template cdk-portal="">
+            <div class="options-container">
+                <ng-container *ngFor="let opt of options" >
+                    <option
+                        [value]="opt.id" 
+                        [class.selected-option]="opt?.id === selectedOption?.id"
+                        (click)="onSelectOption(opt)">{{opt.car}}</option>
+                </ng-container>
+            </div>
+		</ng-template>
+
+    </div>
+</div>
